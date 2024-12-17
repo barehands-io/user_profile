@@ -1,7 +1,24 @@
-<h1>All Users</h1>
-<ul>
-  <% @users.each do |user| %>
-    <li><%= link_to user.name, user %></li>
-  <% end %>
-</ul>
-<%= link_to 'New User', new_user_path %>
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <h1 class="text-3xl font-bold text-gray-900 mb-8">All Users</h1>
+  
+  <div class="bg-white shadow rounded-lg overflow-hidden">
+    <ul class="divide-y divide-gray-200">
+      <% @users.each do |user| %>
+        <li class="hover:bg-gray-50">
+          <%= link_to user, class: "block px-6 py-4 text-gray-700 hover:text-gray-900" do %>
+            <div class="flex items-center">
+              <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                <%= user.name.present? ? user.name[0].upcase : '?' %>
+              </div>
+              <span class="text-lg"><%= user.name.present? ? user.name : 'Unnamed User' %></span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%= link_to 'New User', new_user_path, 
+    class: "mt-6 inline-block px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg 
+            hover:bg-blue-600 transition duration-150 ease-in-out" %>
+</div>
